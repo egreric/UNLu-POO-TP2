@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp2.ej1;
+package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

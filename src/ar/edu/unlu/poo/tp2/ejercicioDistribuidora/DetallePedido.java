@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp2.ej1;
+package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 
 public class DetallePedido {
     private Articulo articulo;
