@@ -3,12 +3,18 @@ package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 public class Articulo {
     private String descripcion;
     private int cantidad;
-    private float precio;
+    private double precio;
 
-    public Articulo(String descripcion, int cantidad, float precio){
+    public Articulo(String descripcion, int cantidad, double precio){
         setDescripcion(descripcion);
         setCantidad(cantidad);
         setPrecio(precio);
+    }
+
+    public Articulo(String descripcion, int cantidad){
+        setDescripcion(descripcion);
+        setCantidad(cantidad);
+        setPrecio(0);
     }
 
     public Articulo(String descripcion){
@@ -32,11 +38,15 @@ public class Articulo {
         this.cantidad = cantidad;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    private void setPrecio(float precio) {
+    private void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String toString(){
+        return (this.getDescripcion() + " - " + this.getCantidad() + " - " + this.getPrecio());
     }
 }

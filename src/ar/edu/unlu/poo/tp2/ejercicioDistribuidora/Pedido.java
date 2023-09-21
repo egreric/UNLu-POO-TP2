@@ -11,15 +11,20 @@ public class Pedido {
     private Estado estado;
     private Cliente cliente;
     private Vendedor vendedor;
-    private ArrayList<DetallePedido> listaDetalle;
+    private ArrayList<DetallePedido> listaDetalle = new ArrayList<DetallePedido>();
 
-    public Pedido(Vendedor vendedor, Cliente cliente, LocalDate fecha, ArrayList<DetallePedido> listaDetalle){
-        setVendedor(vendedor);
-        setCliente(cliente);
+
+    public Pedido(String nombreVendedor, String apellidoVendedor, String dniVendedor, String nombreCliente, String apellidoCliente, String dniCliente, LocalDate fecha){
+        setVendedor(nombreVendedor, apellidoVendedor, dniVendedor);
+        setCliente(nombreCliente, apellidoCliente, dniCliente);
         setFecha(fecha);
-        setListaDetalle(listaDetalle);
         setEstado(Estado.PENDIENTE);
         setNumeroPedido(++numeroTotalPedidos);
+    }
+
+    public void agregarArticulo(String nombreArticulo, int cantidad){
+        DetallePedido detallePedido = new DetallePedido(nombreArticulo, cantidad);
+        this.listaDetalle.add(detallePedido);
     }
 
     public int getNumeroPedido() {
@@ -46,28 +51,25 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getCliente() {
+        return this.cliente.toString();
     }
 
-    private void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    private void setCliente(String nombreCliente, String apellidoCliente, String dniCliente) {
+        this.cliente = new Cliente(nombreCliente, apellidoCliente, dniCliente);
+
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
+    public String getVendedor() {
+       return this.vendedor.toString();
     }
 
-    private void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    private void setVendedor(String nombreVendedor, String apellidoVendedor, String dniVendedor) {
+        this.vendedor = new Vendedor(nombreVendedor, apellidoVendedor, dniVendedor);
     }
 
-    public ArrayList<DetallePedido> getListaDetalle() {
-        return listaDetalle;
-    }
-
-    private void setListaDetalle(ArrayList<DetallePedido> listaDetalle) {
-        this.listaDetalle = listaDetalle;
+    public String getListaDetalle() {
+        return this.listaDetalle.toString();
     }
 
 }

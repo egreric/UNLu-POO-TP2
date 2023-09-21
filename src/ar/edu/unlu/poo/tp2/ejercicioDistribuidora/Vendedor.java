@@ -34,4 +34,8 @@ public class Vendedor {
     private void setDni(String dni) {
         this.dni = dni;
     }
+
+    public String toString(){
+        return (this.getNombre() + " - " + this.getApellido() + " - " + this.getDni());
+    }
 }

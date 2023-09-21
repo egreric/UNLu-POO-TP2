@@ -5,18 +5,24 @@ public class DetallePedido {
     private int cantidad;
     private float precio;
 
-    public DetallePedido(Articulo articulo, int cantidad, float precio){
-        setArticulo(articulo);
+    public DetallePedido(String nombreArticulo, int cantidad, float precio){
+        setArticulo(nombreArticulo);
         setCantidad(cantidad);
         setPrecio(precio);
     }
 
-    public Articulo getArticulo() {
-        return articulo;
+    public DetallePedido(String nombreArticulo, int cantidad){
+        setArticulo(nombreArticulo);
+        setCantidad(cantidad);
+        setPrecio(0);
     }
 
-    private void setArticulo(Articulo articulo) {
-        this.articulo = articulo;
+    private Articulo getArticulo(){
+        return this.articulo;
+    }
+
+    private void setArticulo(String nombreArticulo) {
+        this.articulo = new Articulo(nombreArticulo);
     }
 
     public int getCantidad() {
@@ -33,5 +39,13 @@ public class DetallePedido {
 
     private void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    private String getDescripcionArticulo(){
+        return this.getArticulo().getDescripcion();
+    }
+
+    public String toString() {
+        return (this.getDescripcionArticulo() + " - " + this.getCantidad());
     }
 }
