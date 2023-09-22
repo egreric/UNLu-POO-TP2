@@ -13,13 +13,17 @@ public class Pedido {
     private Vendedor vendedor;
     private ArrayList<DetallePedido> listaDetalle = new ArrayList<DetallePedido>();
 
-
     public Pedido(String nombreVendedor, String apellidoVendedor, String dniVendedor, String nombreCliente, String apellidoCliente, String dniCliente, LocalDate fecha){
         setVendedor(nombreVendedor, apellidoVendedor, dniVendedor);
         setCliente(nombreCliente, apellidoCliente, dniCliente);
         setFecha(fecha);
         setEstado(Estado.PENDIENTE);
         setNumeroPedido(++numeroTotalPedidos);
+    }
+
+    public void agregarArticulo(String nombreArticulo, int cantidad, float precio){
+        DetallePedido detallePedido = new DetallePedido(nombreArticulo, cantidad, precio);
+        this.listaDetalle.add(detallePedido);
     }
 
     public void agregarArticulo(String nombreArticulo, int cantidad){

@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class Distribuidora {
     public static void main(String[] args) {
         // Cargo la Base de datos de mis articulos
-        Articulo articulo1 = new Articulo("Bateria",10,20320.10);
-        Articulo articulo2 = new Articulo("Llanta",4,8920.50);
-        Articulo articulo3 = new Articulo("Manguera",1,2500.00);
-        Articulo articulo4 = new Articulo("Aros",2,3400.65);
-        Articulo articulo5 = new Articulo("Tanque",2,3400.65);
-        Articulo articulo6 = new Articulo("Bujia",2,3400.65);
+        Articulo articulo1 = new Articulo("Bateria",20320.10);
+        Articulo articulo2 = new Articulo("Llanta",8920.50);
+        Articulo articulo3 = new Articulo("Manguera",2500.00);
+        Articulo articulo4 = new Articulo("Aros",3400.65);
+        Articulo articulo5 = new Articulo("Tanque",3400.65);
+        Articulo articulo6 = new Articulo("Bujia",3400.65);
 
         Vendedor vendedor1 = new Vendedor("Carlos","Perez","24.543.442");
         Vendedor vendedor2 = new Vendedor("Matias","Sanchez","32.447.636");
@@ -41,9 +41,6 @@ public class Distribuidora {
         pedido1.agregarArticulo("Llanta",4);
         pedido1.agregarArticulo("Manguera",1);
         System.out.println(pedido1.getListaDetalle());
-
-        pedido1.
-
 
         System.out.println(fecha1.minusMonths(1).lengthOfMonth()); // resto un mes a mi fecha y averiguo cuantos dias tiene el mes anterior
 
