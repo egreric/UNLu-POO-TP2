@@ -36,6 +36,6 @@ public class Vendedor {
     }
 
     public String toString(){
-        return (this.getNombre() + " - " + this.getApellido() + " - " + this.getDni());
+        return (this.getNombre() + " " + this.getApellido() + " - " + this.getDni());
     }
 }

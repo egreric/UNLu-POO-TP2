@@ -25,7 +25,7 @@ public class Articulo {
         return precio;
     }
 
-    private void setPrecio(double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

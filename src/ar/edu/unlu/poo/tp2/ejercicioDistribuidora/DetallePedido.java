@@ -3,9 +3,9 @@ package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 public class DetallePedido {
     private Articulo articulo;
     private int cantidad;
-    private float precio;
+    private double precio;
 
-    public DetallePedido(String nombreArticulo, int cantidad, float precio){
+    public DetallePedido(String nombreArticulo, int cantidad, double precio){
         setArticulo(nombreArticulo);
         setCantidad(cantidad);
         setPrecio(precio);
@@ -17,9 +17,8 @@ public class DetallePedido {
         setPrecio(0);
     }
 
-    private Articulo getArticulo(){
-        return this.articulo;
-    }
+
+    public String getDescripcionArticulo(){ return this.articulo.getDescripcion(); }
 
     private void setArticulo(String nombreArticulo) {
         this.articulo = new Articulo(nombreArticulo);
@@ -33,16 +32,12 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    private String getDescripcionArticulo(){
-        return this.getArticulo().getDescripcion();
     }
 
     public String toString() {

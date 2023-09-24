@@ -1,6 +1,7 @@
 package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -21,7 +22,7 @@ public class Pedido {
         setNumeroPedido(++numeroTotalPedidos);
     }
 
-    public void agregarArticulo(String nombreArticulo, int cantidad, float precio){
+    public void agregarArticulo(String nombreArticulo, int cantidad, double precio){
         DetallePedido detallePedido = new DetallePedido(nombreArticulo, cantidad, precio);
         this.listaDetalle.add(detallePedido);
     }
@@ -29,6 +30,10 @@ public class Pedido {
     public void agregarArticulo(String nombreArticulo, int cantidad){
         DetallePedido detallePedido = new DetallePedido(nombreArticulo, cantidad);
         this.listaDetalle.add(detallePedido);
+    }
+
+    public int cantidadArticulos(){
+        return this.listaDetalle.size();
     }
 
     public int getNumeroPedido() {
@@ -39,8 +44,10 @@ public class Pedido {
         this.numeroPedido = numeroPedido;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getFecha(){ return this.fecha; }
+
+    public String getFechaFormateada() {
+        return fecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     private void setFecha(LocalDate fecha) {
@@ -61,7 +68,6 @@ public class Pedido {
 
     private void setCliente(String nombreCliente, String apellidoCliente, String dniCliente) {
         this.cliente = new Cliente(nombreCliente, apellidoCliente, dniCliente);
-
     }
 
     public String getVendedor() {
@@ -72,8 +78,32 @@ public class Pedido {
         this.vendedor = new Vendedor(nombreVendedor, apellidoVendedor, dniVendedor);
     }
 
-    public String getListaDetalle() {
-        return this.listaDetalle.toString();
+    public void aceptar(){
+        setEstado(Estado.ACEPTADO);
+    }
+
+    public boolean estaAceptado(){
+        return this.estado == Estado.ACEPTADO;
+    }
+
+    public void rechazar(){
+        setEstado(Estado.RECHAZADO);
+    }
+
+    public boolean estaRechazado(){
+        return this.estado == Estado.RECHAZADO;
+    }
+
+    public String getDescripcionArticulo(int numero){
+        return this.listaDetalle.get(numero).getDescripcionArticulo();
+    }
+
+    public int getCantidadArticulo(int numero){
+        return this.listaDetalle.get(numero).getCantidad();
+    }
+
+    public String toString() {
+        return this.listaDetalle.toString() + " - " + this.getFechaFormateada() + " - (" + this.estado + ")";
     }
 
 }

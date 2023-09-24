@@ -1,6 +1,7 @@
 package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Factura {
     private static int numeroTotalFacturas = 0; /* Llevo registro de cuantas facturas realice asi a medida que voy
@@ -15,9 +16,7 @@ public class Factura {
         setNumeroFactura(++numeroTotalFacturas);
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
+    public String getFecha() { return fecha.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); }
 
     private void setFecha(LocalDate fecha) {
         this.fecha = fecha;
