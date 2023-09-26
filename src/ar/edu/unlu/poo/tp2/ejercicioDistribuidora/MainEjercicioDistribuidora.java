@@ -1,11 +1,9 @@
-package ar.edu.unlu.poo.tp2;
-
-import ar.edu.unlu.poo.tp2.ejercicioDistribuidora.*;
+package ar.edu.unlu.poo.tp2.ejercicioDistribuidora;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Distribuidora {
+public class MainEjercicioDistribuidora {
     public static void main(String[] args) {
         // Cargo el stock disponile de mis articulos
         Stock stock = new Stock();
