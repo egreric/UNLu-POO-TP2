@@ -7,11 +7,11 @@ public class MedioTransporte {
 
     private Proveedor proveedor;
 
-    public MedioTransporte(String nombre, double costo, TipoMedioTransporte tipoMedioTransporte, Proveedor proveedor){
+    public MedioTransporte(String nombre, double costo, TipoMedioTransporte tipoMedioTransporte, String razonSocialProveedor, String cuitProveedor){
         setNombre(nombre);
         setCosto(costo);
         setTipoMedioTransporte(tipoMedioTransporte);
-        setProveedor(proveedor);
+        setProveedor(razonSocialProveedor, cuitProveedor);
    }
 
     public String getNombre() {
@@ -42,8 +42,8 @@ public class MedioTransporte {
         return proveedor;
     }
 
-    private void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    private void setProveedor(String razonSocial, String cuit) {
+        this.proveedor = new Proveedor(razonSocial, cuit, TipoProveedor.MEDIO_TRANSPORTE);
     }
 
     public boolean esIgual(MedioTransporte medioTransporte) {

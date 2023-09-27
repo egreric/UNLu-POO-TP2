@@ -29,15 +29,25 @@ public class MainAgenciaTurismo {
         agenciaTurismo.agregarProveedor(proveedor4);agenciaTurismo.agregarProveedor(proveedor5);agenciaTurismo.agregarProveedor(proveedor6);
         agenciaTurismo.agregarProveedor(proveedor7);agenciaTurismo.agregarProveedor(proveedor8);agenciaTurismo.agregarProveedor(proveedor9);
 
-        MedioTransporte mt1 = new MedioTransporte("Aviones 1",3000,TipoMedioTransporte.AEREA,proveedor1);
-        Hospedaje h1 = new Hospedaje("Hosteria 1",2000,TipoHospedaje.HOSTERIA,proveedor4);
+        MedioTransporte mt1 = new MedioTransporte("Aviones 1",5000,TipoMedioTransporte.AEREA,"Volar Alto S.A.","30-24433243-1");
+        MedioTransporte mt2 = new MedioTransporte("Terrestre 1",1500,TipoMedioTransporte.MARITIMA,"Mar Azul S.R.L.","30-29333222-7");
+        MedioTransporte mt3 = new MedioTransporte("Maritima 1",3000,TipoMedioTransporte.TERRESTE,"Truck Master S.A.","30-32777888-3");
+
+        Hospedaje h1 = new Hospedaje("Hosteria 1",2300,TipoHospedaje.HOSTERIA,proveedor4);
+        Hospedaje h2 = new Hospedaje("Hosteria 1",3600,TipoHospedaje.BUNGALO,proveedor5);
+        Hospedaje h3 = new Hospedaje("Hosteria 1",4800,TipoHospedaje.HOTEL,proveedor6);
+
         Excursion e1 = new Excursion("Excursion 1",1000, proveedor7);
+        Excursion e2 = new Excursion("Excursion 1",1000, proveedor8);
+        Excursion e3 = new Excursion("Excursion 1",1000, proveedor9);
+
         PaqueteTurismo pTurismo1 = new PaqueteTurismo("Grecia",mt1,h1);
         pTurismo1.agregarExcursion(e1);
 
 
+
+
         agenciaTurismo.agregarPaqueteTurismo(pTurismo1);
-        agenciaTurismo.agregarCliente(cliente1);
 
     }
 }

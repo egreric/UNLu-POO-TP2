@@ -18,7 +18,7 @@ public class AgenciaTurismo {
     }
 
     public void agregarProveedor(Proveedor proveedor){
-        // mejora: agregar solo si el cliente no existe (funcion a implementar -private boolean existeProveedor(Proveedor proveedor)-)
+        // mejora: agregar solo si el proveedor no existe (funcion a implementar -private boolean existeProveedor(Proveedor proveedor)-)
         this.proveedores.add(proveedor);
     }
 
