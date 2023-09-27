@@ -7,11 +7,11 @@ public class Hospedaje {
 
     private Proveedor proveedor;
 
-    public Hospedaje(String nombre, double costo, TipoHospedaje tipoHospedaje, Proveedor proveedor){
+    public Hospedaje(String nombre, double costo, TipoHospedaje tipoHospedaje, String nombreProveedor, String cuitProveedor){
         setNombre(nombre);
         setCosto(costo);
         setTipoHospedaje(tipoHospedaje);
-        setProveedor(proveedor);
+        setProveedor(nombreProveedor, cuitProveedor);
     }
 
     public String getNombre(){
@@ -42,8 +42,9 @@ public class Hospedaje {
         return this.proveedor;
     }
 
-    private void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    private void setProveedor(String nombre, String cuit) {
+
+        this.proveedor = new Proveedor(nombre, cuit,TipoProveedor.HOSPEDAJE);
     }
 
     public boolean esIgual(Hospedaje hospedaje) {

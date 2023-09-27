@@ -27,7 +27,7 @@ public class Proveedor {
         this.cuit = cuit;
     }
 
-    private TipoProveedor getTipoProveedor(){
+    public TipoProveedor getTipoProveedor(){
         return this.tipoProveedor;
     }
 

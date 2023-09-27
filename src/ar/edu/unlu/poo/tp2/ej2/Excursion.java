@@ -5,10 +5,10 @@ public class Excursion {
     private double costo;
     private Proveedor proveedor;
 
-    public Excursion(String nombre, double costo, Proveedor proveedor){
+    public Excursion(String nombre, double costo, String nombreProveedor, String cuitProveedor){
         setNombre(nombre);
         setCosto(costo);
-        setProveedor(proveedor);
+        setProveedor(nombreProveedor, cuitProveedor);
     }
 
     public String getNombre(){
@@ -30,8 +30,8 @@ public class Excursion {
         return this.proveedor;
     }
 
-    private void setProveedor(Proveedor proveedor){
-        this.proveedor = proveedor;
+    private void setProveedor(String nombre, String cuit){
+        this.proveedor = new Proveedor(nombre,cuit,TipoProveedor.EXCURSION);
     }
 
     public boolean esIgual(Excursion excursion) {

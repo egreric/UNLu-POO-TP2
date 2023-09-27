@@ -93,8 +93,16 @@ public class PaqueteTurismo {
                 if (!excursionEncontrada(listaExcursiones1.get(i), listaExcursiones2)) {
                     iguales = false;
                 }
+                i++;
             }
         }
         return iguales;
+    }
+
+    public String toString(){
+        String s = "";
+        s += "[Destino: " + this.destino + "] - [Medio Transporte: " +this.medioTransporte.getNombre() + "] - [Hospedaje: " + this.hospedaje.getNombre() + " (" + this.hospedaje.getTipoHospedaje() + ")] - [Cant. Excursiones: " + this.listaExcursiones.size() + "]";
+
+        return s;
     }
 }
