@@ -107,43 +107,42 @@ public class GestionAcademia {
     }
 
     public void inscribirAlumno(String dniAlumno, int numeroDeClaseAInscribir){
-        if (existeAlumno(dniAlumno)){
-            if (numeroDeClaseAInscribir <= this.clases.size()){
-                Inscripcion i = new Inscripcion(this.clases.get(numeroDeClaseAInscribir-1),buscarAlumno(dniAlumno));
-                if (!this.inscripciones.contains(i)) {
-                    this.inscripciones.add(i);
-                }
+        if (existeAlumno(dniAlumno) && (numeroDeClaseAInscribir <= this.clases.size())){
+            if (!existeInscripcion(dniAlumno, numeroDeClaseAInscribir)){
+                this.inscripciones.add(new Inscripcion(this.clases.get(numeroDeClaseAInscribir-1),buscarAlumno(dniAlumno)));
             }
         }
     }
 
-    public String informeMensual(){
-        String s = "";
-        int cantidadAsistencias = 0;
-        double gananciaPorAsistenca = 10;
-        for (Profesor p: profesores){
-            s += "Profesor: " + p.getNombre() + " " + p.getApellido() + " (dni: " + p.getDni() + ")\n";
-            cantidadAsistencias = this.asistenciasMesPasadoSegunProfesor(p);
-            s += "Cantidad de asistencias: " + cantidadAsistencias + "\n";
-            s += "Importe a pagar: $" + (cantidadAsistencias*gananciaPorAsistenca) + "\n";
-        }
-        return s;
-    }
-
-    private int asistenciasMesPasadoSegunProfesor(Profesor p) {
-        int sumatoria = 0;
-        int mesAnterior = LocalDate.now().minusMonths(1).getMonthValue();
-        for (Inscripcion i: inscripciones){ // busco en cada inscripcion las asistencias
-            if (i.getClase().getProfesor().getDni().equals(p.getDni())){ // pregunto si es el profesor que busco
-                for (LocalDate fecha: i.getAsistencias()){
-                    if (fecha.getMonthValue() == mesAnterior) { // cuento las asistencias del mes anterior al actual (el informe es a mes vencido)
-                        sumatoria++;
-                    }
-                }
-
+    private boolean existeInscripcion(String dniAlumno, int numeroClase){
+        Alumno alumno = buscarAlumno(dniAlumno);
+        Clase clase = this.clases.get(numeroClase-1);
+        for (Inscripcion i: this.inscripciones){
+            if (i.getAlumno().equals(alumno) && i.getClase().equals(clase)){
+                return true;
             }
         }
-        return sumatoria;
+        return false;
+    }
+
+    private Inscripcion buscarInscripcion(String dniAlumno, int numeroClase){
+        Alumno alumno = buscarAlumno(dniAlumno);
+        Clase clase = this.clases.get(numeroClase-1);
+        for (Inscripcion i: this.inscripciones){
+            if (i.getAlumno().equals(alumno) && i.getClase().equals(clase)){
+                return i;
+            }
+        }
+        return null;
+    }
+
+
+    public void agregarAsistencia(String dniAlumno, int numeroDeClaseAAsistir, LocalDate fecha){
+        if (existeAlumno(dniAlumno) && (numeroDeClaseAAsistir <= this.clases.size())){
+            if (existeInscripcion(dniAlumno,numeroDeClaseAAsistir)) {
+                buscarInscripcion(dniAlumno,numeroDeClaseAAsistir).agregarAsistencia(fecha);
+            }
+        }
     }
 
     public String getListadoAlumnos(){
@@ -192,6 +191,35 @@ public class GestionAcademia {
             s +=  "Inscripcion " + (i+1) + " -> " + this.inscripciones.get(i).toString() + "\n";
         }
         return s;
+    }
+
+    public String informeMensual(){
+        String s = "";
+        int cantidadAsistencias = 0;
+        double gananciaPorAsistenca = 10;
+        for (Profesor p: profesores){
+            s += "Profesor: " + p.getNombre() + " " + p.getApellido() + " (dni: " + p.getDni() + ")\n";
+            cantidadAsistencias = this.asistenciasMesPasadoSegunProfesor(p);
+            s += "Cantidad de asistencias: " + cantidadAsistencias + "\n";
+            s += "Importe a pagar: $" + (cantidadAsistencias*gananciaPorAsistenca) + "\n";
+        }
+        return s;
+    }
+
+    private int asistenciasMesPasadoSegunProfesor(Profesor p) {
+        int sumatoria = 0;
+        int mesAnterior = LocalDate.now().minusMonths(1).getMonthValue();
+        for (Inscripcion i: inscripciones){ // busco en cada inscripcion las asistencias
+            if (i.getClase().getProfesor().getDni().equals(p.getDni())){ // pregunto si es el profesor que busco
+                for (LocalDate fecha: i.getAsistencias()){
+                    if (fecha.getMonthValue() == mesAnterior) { // cuento las asistencias del mes anterior al actual (el informe es a mes vencido)
+                        sumatoria++;
+                    }
+                }
+
+            }
+        }
+        return sumatoria;
     }
 
 }

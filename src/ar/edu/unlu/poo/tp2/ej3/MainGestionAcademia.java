@@ -2,6 +2,7 @@ package ar.edu.unlu.poo.tp2.ej3;
 
 import ar.edu.unlu.poo.tp2.ej3.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainGestionAcademia {
@@ -106,11 +107,15 @@ public class MainGestionAcademia {
         ga.inscribirAlumno("16.232.545",3);
         ga.inscribirAlumno("16.232.545",8);
 
+
         System.out.println(ga.getListadoAlumnos());
         System.out.println(ga.getListadoProfesores());
         System.out.println(ga.getListadoDisciplinas());
         System.out.println(ga.getListadoSalones());
         System.out.println(ga.getListadoClases());
+        System.out.println(ga.getListadoInscripciones());
+
+        ga.agregarAsistencia("13.422.423",8,LocalDate.of(2023,8,2));
         System.out.println(ga.getListadoInscripciones());
 
 

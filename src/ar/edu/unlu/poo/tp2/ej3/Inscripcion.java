@@ -39,11 +39,23 @@ public class Inscripcion {
         this.importe = importe;
     }
 
-    public void agregarAsistencia(LocalDate fecha){
-        this.asistencias.add(fecha);
+    private boolean existeFecha(LocalDate fecha){
+        for (LocalDate f: this.asistencias){
+            if (f.equals(fecha)){
+                return true;
+            }
+        }
+        return false;
     }
 
-    public ArrayList<LocalDate> getAsistencias() {
+
+    public void agregarAsistencia(LocalDate fecha){
+        if (!existeFecha(fecha)){
+            this.asistencias.add(fecha);
+        }
+     }
+
+    public ArrayList<LocalDate> getAsistencias(){
         return asistencias;
     }
 
@@ -52,6 +64,7 @@ public class Inscripcion {
         String s = "";
         s += "Alumno: " + getAlumno().getNombre() + " " + getAlumno().getApellido() + " | Clase: " + getClase().getDisciplina().getNombre() + " " + getClase().getNivel();
         s += "(Prof. " + getClase().getProfesor().getNombre() + " " + getClase().getProfesor().getApellido() + ") " + getClase().getHorarios().toString();
+        s += "      ASISTENCIAS " + getAsistencias();
         return s;
     }
 }
