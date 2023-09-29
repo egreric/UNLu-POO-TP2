@@ -46,4 +46,12 @@ public class Inscripcion {
     public ArrayList<LocalDate> getAsistencias() {
         return asistencias;
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "Alumno: " + getAlumno().getNombre() + " " + getAlumno().getApellido() + " | Clase: " + getClase().getDisciplina().getNombre() + " " + getClase().getNivel();
+        s += "(Prof. " + getClase().getProfesor().getNombre() + " " + getClase().getProfesor().getApellido() + ") " + getClase().getHorarios().toString();
+        return s;
+    }
 }

@@ -1,5 +1,7 @@
 package ar.edu.unlu.poo.tp2.ej3;
 
+import ar.edu.unlu.poo.tp2.ej3.*;
+
 import java.util.ArrayList;
 
 public class MainGestionAcademia {
@@ -7,73 +9,115 @@ public class MainGestionAcademia {
     public static void main(String[] args){
         GestionAcademia ga = new GestionAcademia();
 
-        Alumno alumno1 = new Alumno("Raul", "Rizzo","13.422.423");
-        Alumno alumno2 = new Alumno("Pedro", "Rodriguez","15.444.332");
-        Alumno alumno3 = new Alumno("Juan", "Paz","16.232.545");
-        Alumno alumno4 = new Alumno("Ezequiel", "Guerra","24.123.786");
-        Alumno alumno5 = new Alumno("Pablo", "Castillo","28.244.268");
+        // DOY ALTA DISCIPLINAS
+        ga.altaDisciplina("Tango");
+        ga.altaDisciplina("Salsa");
+        ga.altaDisciplina("Bachata");
+        ga.altaDisciplina("Clasico");
+        ga.altaDisciplina("Arabe");
 
-        Profesor profesor1 = new Profesor("Ernesto","Feliz","23.412.125");
-        Profesor profesor2 = new Profesor("Carlos","Maidana","11.467.421");
-        Profesor profesor3 = new Profesor("Roberto","Perez","28.231.869");
-        Profesor profesor4 = new Profesor("Damian","Romero","31.789.549");
-        Profesor profesor5 = new Profesor("Joaquin","Paredes","35.275.341");
+        // DOY ALTA PROFESORES
+        ga.altaProfesor("Ernesto","Feliz","23.412.125");
+        ga.altaProfesor("Carlos","Maidana","11.467.421");
+        ga.altaProfesor("Roberto","Perez","28.231.869");
+        ga.altaProfesor("Damian","Romero","31.789.549");
+        ga.altaProfesor("Joaquin","Paredes","35.275.341");
 
-        Disciplina disciplina1 = new Disciplina("Tango");
-        Disciplina disciplina2 = new Disciplina("Salsa");
-        Disciplina disciplina3 = new Disciplina("Bachata");
-        Disciplina disciplina4 = new Disciplina("Clasico");
-        Disciplina disciplina5 = new Disciplina("Arabe");
+        // DOY ALTA SALONES
+        ga.altaSalon("S10",10);
+        ga.altaSalon("S25",25);
+        ga.altaSalon("S50",50);
+        ga.altaSalon("S30",30);
+        ga.altaSalon("S15",15);
+
+        // DOY DE ALTA ALGUNAS CLASES
+        // CLASE N°1
+        ArrayList<Horario> horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.LUNES,"15.30hs"));
+        horarios.add(new Horario(Dia.MIERCOLES,"17.00hs"));
+        ga.altaClase("Tango",NivelClase.INICIAL,"23.412.125",horarios,"S10",3000);
+
+        // CLASE N°2
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.MARTES,"14.00hs"));
+        horarios.add(new Horario(Dia.MIERCOLES,"16.00hs"));
+        ga.altaClase("Bachata",NivelClase.INICIAL,"11.467.421",horarios,"S50",5000);
+
+        // CLASE N°3
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.LUNES,"18.30hs"));
+        horarios.add(new Horario(Dia.JUEVES,"15.00hs"));
+        ga.altaClase("Tango",NivelClase.INICIAL,"23.412.125",horarios,"S25",2800);
+
+        // CLASE N°4
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.LUNES,"19.00hs"));
+        horarios.add(new Horario(Dia.VIERNES,"21.00hs"));
+        ga.altaClase("Salsa",NivelClase.INTERMEDIO,"23.412.125",horarios,"S30",3400);
+
+        // CLASE N°5
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.MIERCOLES,"13.40hs"));
+        horarios.add(new Horario(Dia.SABADO,"17.30hs"));
+        ga.altaClase("Bachata",NivelClase.AVANZADO,"28.231.869",horarios,"S25",6300);
+
+        // CLASE N°6
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.MARTES,"20.30hs"));
+        horarios.add(new Horario(Dia.JUEVES,"21.00hs"));
+        ga.altaClase("Clasico",NivelClase.AVANZADO,"31.789.549",horarios,"S30",4400);
+
+        // CLASE N°7
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.VIERNES,"21.30hs"));
+        horarios.add(new Horario(Dia.SABADO,"08.30hs"));
+        ga.altaClase("Arabe",NivelClase.INTERMEDIO,"35.275.341",horarios,"S15",6400);
+
+        // CLASE N°8
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.MIERCOLES,"09.00hs"));
+        horarios.add(new Horario(Dia.VIERNES,"11.00hs"));
+        ga.altaClase("Arabe",NivelClase.INTERMEDIO,"35.275.341",horarios,"S25",3200);
+
+        // CLASE N°9
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.MARTES,"10.30hs"));
+        horarios.add(new Horario(Dia.SABADO,"16.00hs"));
+        ga.altaClase("Tango",NivelClase.INICIAL,"28.231.869",horarios,"S15",2800);
+
+        // CLASE N°10
+        horarios = new ArrayList<Horario>();
+        horarios.add(new Horario(Dia.LUNES,"11.00hs"));
+        horarios.add(new Horario(Dia.MARTES,"09.00hs"));
+        ga.altaClase("Tango",NivelClase.AVANZADO,"31.789.549",horarios,"S15",3900);
+
+        // DOY ALTA ALUMNOS NUEVOS (Y POR SER NUEVOS LOS DEBO INSCRIBIR A UN N° DE CLASE)
+        ga.altaAlumno("Raul", "Rizzo","13.422.423",1);
+        ga.altaAlumno("Joaquin", "Pereira","26.783.288",2);
+        ga.altaAlumno("Pedro", "Rodriguez","15.444.332",3);
+        ga.altaAlumno("Juan", "Paz","16.232.545",4);
+        ga.altaAlumno("Ezequiel", "Guerra","24.123.786",10);
+        ga.altaAlumno("Pablo", "Castillo","28.244.268",6);
+        ga.altaAlumno("Marcos", "Real","32.311.113",7);
+
+        ga.inscribirAlumno("13.422.423", 8);
+        ga.inscribirAlumno("26.783.288", 9);
+        ga.inscribirAlumno("15.444.332", 10);
+        ga.inscribirAlumno("16.232.545",3);
+        ga.inscribirAlumno("16.232.545",8);
+
+        System.out.println(ga.getListadoAlumnos());
+        System.out.println(ga.getListadoProfesores());
+        System.out.println(ga.getListadoDisciplinas());
+        System.out.println(ga.getListadoSalones());
+        System.out.println(ga.getListadoClases());
+        System.out.println(ga.getListadoInscripciones());
 
 
-        Salon salon1 = new Salon("S10",10);
-        Salon salon2 = new Salon("S25",25);
-        Salon salon3 = new Salon("S50",50);
-        Salon salon4 = new Salon("S30",30);
-        Salon salon5 = new Salon("S15",15);
+        // me falta agregar a la clase gestionAcademia las asistencias a las clases por parte de los alumnos
+        System.out.println(ga.informeMensual());
 
 
-        Clase clase1 = new Clase(disciplina1,NivelClase.INICIAL,profesor1,salon1,3500);
-        clase1.agregarHorario(Dia.LUNES,"15.30hs");
-        clase1.agregarHorario(Dia.MIERCOLES,"17.00hs");
-
-        Clase clase2 = new Clase(disciplina3,NivelClase.INICIAL,profesor2,salon3,5000);
-        clase2.agregarHorario(Dia.MARTES,"14.00hs");
-        clase2.agregarHorario(Dia.MIERCOLES,"16.00hs");
-
-        Clase clase3 = new Clase(disciplina1,NivelClase.INICIAL,profesor1,salon2,2800);
-        clase3.agregarHorario(Dia.LUNES,"18.30hs");
-        clase3.agregarHorario(Dia.JUEVES,"15.00hs");
-
-        Clase clase4 = new Clase(disciplina2,NivelClase.INTERMEDIO,profesor1,salon4,3400);
-        clase4.agregarHorario(Dia.LUNES,"19.00hs");
-        clase4.agregarHorario(Dia.VIERNES,"21.00hs");
-
-        Clase clase5 = new Clase(disciplina3,NivelClase.AVANZADO,profesor3,salon2,6300);
-        clase5.agregarHorario(Dia.MIERCOLES,"13.40hs");
-        clase5.agregarHorario(Dia.SABADO,"17.30hs");
-
-        Clase clase6 = new Clase(disciplina4,NivelClase.AVANZADO,profesor4,salon4,4400);
-        clase6.agregarHorario(Dia.MARTES,"20.30hs");
-        clase6.agregarHorario(Dia.JUEVES,"21.00hs");
-
-        Clase clase7 = new Clase(disciplina5,NivelClase.INTERMEDIO,profesor5,salon5,6400);
-        clase7.agregarHorario(Dia.VIERNES,"21.30hs");
-        clase7.agregarHorario(Dia.SABADO,"08.30hs");
-
-        Clase clase8 = new Clase(disciplina5,NivelClase.INTERMEDIO,profesor5,salon2,3200);
-        clase8.agregarHorario(Dia.MIERCOLES,"09.00hs");
-        clase8.agregarHorario(Dia.VIERNES,"11.00hs");
-
-        Clase clase9 = new Clase(disciplina1,NivelClase.INICIAL,profesor3,salon5,2800);
-        clase9.agregarHorario(Dia.MARTES,"10.30hs");
-        clase9.agregarHorario(Dia.SABADO,"16.00hs");
-
-        Clase clase10 = new Clase(disciplina1,NivelClase.AVANZADO,profesor4,salon5,3900);
-        clase10.agregarHorario(Dia.LUNES,"11.00hs");
-        clase10.agregarHorario(Dia.MARTES,"9.00hs");
-
-        
 
 
     }

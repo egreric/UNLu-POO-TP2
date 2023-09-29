@@ -1,5 +1,7 @@
 package ar.edu.unlu.poo.tp2.ej3;
 
+import java.util.Objects;
+
 public class Profesor {
     private String nombre;
     private String apellido;
@@ -33,6 +35,24 @@ public class Profesor {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profesor profesor = (Profesor) o;
+        return Objects.equals(nombre, profesor.nombre) && Objects.equals(apellido, profesor.apellido) && Objects.equals(dni, profesor.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, apellido, dni);
+    }
+
+    @Override
+    public String toString(){
+        return "Nombre: " + getNombre() + " " + getApellido() + " | Dni: " + getDni();
     }
 
 }

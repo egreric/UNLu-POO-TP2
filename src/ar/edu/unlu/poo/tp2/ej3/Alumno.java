@@ -34,4 +34,9 @@ public class Alumno {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    @Override
+    public String toString(){
+        return "Nombre: " + getNombre() + " " + getApellido() + " | Dni: " + getDni();
+    }
 }

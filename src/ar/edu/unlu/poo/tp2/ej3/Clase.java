@@ -1,6 +1,8 @@
 package ar.edu.unlu.poo.tp2.ej3;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Clase {
     private Disciplina disciplina;
@@ -10,19 +12,20 @@ public class Clase {
     private Salon salon;
     private double costo;
 
-    public Clase(Disciplina disciplina, NivelClase nivelClase, Profesor profesor, Salon salon, double precio){
+    public Clase(Disciplina disciplina, NivelClase nivelClase, Profesor profesor, ArrayList<Horario> horarios,  Salon salon, double precio){
         setDisciplina(disciplina);
         setNivel(nivelClase);
         setProfesor(profesor);
         setSalon(salon);
         setCosto(precio);
+        setHorarios(horarios);
     }
 
     public Disciplina getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
+    private void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
 
@@ -30,7 +33,7 @@ public class Clase {
         return nivel;
     }
 
-    public void setNivel(NivelClase nivel) {
+    private void setNivel(NivelClase nivel) {
         this.nivel = nivel;
     }
 
@@ -38,22 +41,22 @@ public class Clase {
         return profesor;
     }
 
-    public void setProfesor(Profesor profesor) {
+    private void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
 
     public ArrayList<Horario> getHorarios() { return horarios;
     }
 
-    public void agregarHorario(Dia dia, String hora){
-        this.horarios.add(new Horario(dia,hora));
+    private void setHorarios(ArrayList<Horario> horarios){
+        this.horarios = horarios;
     }
 
     public Salon getSalon() {
         return salon;
     }
 
-    public void setSalon(Salon salon) {
+    private void setSalon(Salon salon) {
         this.salon = salon;
     }
 
@@ -61,7 +64,28 @@ public class Clase {
         return this.costo;
     }
 
-    public void setCosto(double costo) {
+    private void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Clase clase = (Clase) o;
+        return Double.compare(costo, clase.costo) == 0 && Objects.equals(disciplina, clase.disciplina) && nivel == clase.nivel && Objects.equals(profesor, clase.profesor) && Objects.equals(horarios, clase.horarios) && Objects.equals(salon, clase.salon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(disciplina, nivel, profesor, horarios, salon, costo);
+    }
+
+    @Override
+    public String toString(){
+        String s = "";
+        s += "Disciplina: " + getDisciplina().getNombre() + " (" + getNivel() + ") | Profesor: " + getProfesor().getNombre() + " " + getProfesor().getApellido() + " | ";
+        s += "Horarios: " + getHorarios().toString() + " | Salon: " + getSalon().getNombre() + " | Costo $" + getCosto();
+        return s;
     }
 }
