@@ -194,14 +194,14 @@ public class GestionAcademia {
     }
 
     public String informeMensual(){
-        String s = "";
+        String s = "LISTADO MENSUAL - PAGO A PROFESORES - MES " + LocalDate.now().minusMonths(1).getMonthValue() + "\n";
         int cantidadAsistencias = 0;
         double gananciaPorAsistenca = 10;
         for (Profesor p: profesores){
             s += "Profesor: " + p.getNombre() + " " + p.getApellido() + " (dni: " + p.getDni() + ")\n";
             cantidadAsistencias = this.asistenciasMesPasadoSegunProfesor(p);
             s += "Cantidad de asistencias: " + cantidadAsistencias + "\n";
-            s += "Importe a pagar: $" + (cantidadAsistencias*gananciaPorAsistenca) + "\n";
+            s += "Importe a pagar: $" + (cantidadAsistencias*gananciaPorAsistenca) + "\n\n";
         }
         return s;
     }
@@ -220,6 +220,28 @@ public class GestionAcademia {
             }
         }
         return sumatoria;
+    }
+
+    public String informeDisciplinaMayorIngreso(){
+        String disciplinaMayorIngreso = "";
+        double ingresoMayor = -1;
+        double sumatoria = 0;
+        if (!this.inscripciones.isEmpty()){
+            for(Disciplina d: this.disciplinas){
+                for (Inscripcion i: this.inscripciones){
+                    if (i.getClase().getDisciplina().getNombre().equals(d.getNombre())){
+                        sumatoria += i.getImporte();
+                    }
+                }
+                if (sumatoria > ingresoMayor){
+                    ingresoMayor = sumatoria;
+                    disciplinaMayorIngreso = d.getNombre();
+                }
+                sumatoria = 0;
+            }
+            return ("La Discplina con mayor ingreso es: " + disciplinaMayorIngreso + ". Con un ingreso de: $" + ingresoMayor + "\n");
+        }
+        return "";
     }
 
 }

@@ -101,28 +101,61 @@ public class MainGestionAcademia {
         ga.altaAlumno("Pablo", "Castillo","28.244.268",6);
         ga.altaAlumno("Marcos", "Real","32.311.113",7);
 
+        // INSCRIBO A ALUMNOS YA DADOS DE ALTA A N° DE CLASE
         ga.inscribirAlumno("13.422.423", 8);
         ga.inscribirAlumno("26.783.288", 9);
         ga.inscribirAlumno("15.444.332", 10);
         ga.inscribirAlumno("16.232.545",3);
         ga.inscribirAlumno("16.232.545",8);
 
+        // REGISTRO LAS ASISTENCIAS DE LOS ALUMNOS EN CADA CLASE
+        ga.agregarAsistencia("13.422.423",1,LocalDate.of(2023,8,2));
+        ga.agregarAsistencia("13.422.423",1,LocalDate.of(2023,8,4));
+        ga.agregarAsistencia("13.422.423",1,LocalDate.of(2023,9,12));
 
-        System.out.println(ga.getListadoAlumnos());
-        System.out.println(ga.getListadoProfesores());
-        System.out.println(ga.getListadoDisciplinas());
-        System.out.println(ga.getListadoSalones());
-        System.out.println(ga.getListadoClases());
-        System.out.println(ga.getListadoInscripciones());
+        ga.agregarAsistencia("26.783.288",2,LocalDate.of(2023,8,10));
+        ga.agregarAsistencia("26.783.288",2,LocalDate.of(2023,9,27));
 
-        ga.agregarAsistencia("13.422.423",8,LocalDate.of(2023,8,2));
-        System.out.println(ga.getListadoInscripciones());
+        ga.agregarAsistencia("15.444.332",3,LocalDate.of(2023,8,30));
 
+        ga.agregarAsistencia("16.232.545",4,LocalDate.of(2023,8,12));
+        ga.agregarAsistencia("16.232.545",4,LocalDate.of(2023,9,15));
+        ga.agregarAsistencia("16.232.545",4,LocalDate.of(2023,9,28));
 
-        // me falta agregar a la clase gestionAcademia las asistencias a las clases por parte de los alumnos
-        System.out.println(ga.informeMensual());
+        ga.agregarAsistencia("24.123.786",10,LocalDate.of(2023,8,10));
+        ga.agregarAsistencia("24.123.786",10,LocalDate.of(2023,8,13));
+        ga.agregarAsistencia("24.123.786",10,LocalDate.of(2023,8,18));
 
+        ga.agregarAsistencia("28.244.268",6,LocalDate.of(2023,9,2));
 
+        ga.agregarAsistencia("32.311.113",7,LocalDate.of(2023,8,8));
+
+        ga.agregarAsistencia("13.422.423",8,LocalDate.of(2023,8,21));
+
+        ga.agregarAsistencia("26.783.288",9,LocalDate.of(2023,8,17));
+        ga.agregarAsistencia("26.783.288",9,LocalDate.of(2023,9,11));
+
+        ga.agregarAsistencia("15.444.332",10,LocalDate.of(2023,9,8));
+        ga.agregarAsistencia("15.444.332",10,LocalDate.of(2023,9,22));
+
+        ga.agregarAsistencia("16.232.545",3,LocalDate.of(2023,8,12));
+        ga.agregarAsistencia("16.232.545",3,LocalDate.of(2023,8,17));
+        ga.agregarAsistencia("16.232.545",3,LocalDate.of(2023,9,15));
+
+        ga.agregarAsistencia("16.232.545",8,LocalDate.of(2023,8,24));
+
+        String separacion = ("-------------------------------\n");
+
+        System.out.println(separacion + ga.getListadoAlumnos() + separacion);
+        System.out.println(ga.getListadoProfesores() + separacion);
+        System.out.println(ga.getListadoDisciplinas() + separacion);
+        System.out.println(ga.getListadoSalones() + separacion);
+        System.out.println(ga.getListadoClases() + separacion);
+        System.out.println(ga.getListadoInscripciones() + separacion);
+
+        System.out.println(ga.informeMensual() + separacion);
+
+        System.out.println(ga.informeDisciplinaMayorIngreso() + separacion);
 
 
     }
