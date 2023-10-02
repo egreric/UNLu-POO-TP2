@@ -1,14 +1,19 @@
-package ar.edu.unlu.poo.tp2.ej4.cuentas;
+package ar.edu.unlu.poo.tp2.ej5.cuentas;
+
+import ar.edu.unlu.poo.tp2.ej4.dateUtils.DateUtils;
 
 import java.time.LocalDate;
-import ar.edu.unlu.poo.tp2.ej4.dateUtils.DateUtils;
+
 public class Cuenta {
 	private double saldo;
 	private double limiteGiroDescubierto;
 	private double giroDescubierto;
 	private double saldoInvertido;
-	public static final double INTERES_POR_INVERSION = 0.4;
-	public static final double PLAZO_DIAS_INVERSION = 30;
+	public static final double INTERES_POR_INVERSION_MINIMA = 0.05;
+	public static final double INTERES_POR_INVERSION_MAXIMA = 0.4;
+	public static final double PLAZO_DIAS_INVERSION_MINIMA = 30;
+	public static final double PLAZO_DIAS_INVERSION_MAXIMA = 120;
+	private boolean precancelarAutomatico;
 	private LocalDate fechaInversion;
 
 	public Cuenta(double saldo, double limiteGiroDescubierto) {
@@ -16,7 +21,8 @@ public class Cuenta {
 		this.limiteGiroDescubierto = limiteGiroDescubierto;
 		this.giroDescubierto = 0;
 		this.saldoInvertido = 0;
-		this.fechaInversion = null;	
+		this.fechaInversion = null;
+		this.precancelarAutomatico = false;
 	}
 	
 	/**
@@ -29,19 +35,35 @@ public class Cuenta {
 	
 	public boolean gastar(double monto) {
 		boolean res = false;
-		
-		if ((this.saldo + (this.limiteGiroDescubierto-this.giroDescubierto)) >= monto) {
-			if (this.saldo < monto) {
-				// Giro en descubierto
-				this.giroDescubierto += monto - this.saldo;
-				this.saldo = 0;
-			}else {
-				// El saldo me alcanza para el gasto
-				this.saldo -= monto;
+		if (precancelarAutomatico){
+			if (this.saldo + this.saldoInvertido + getInteresGanadoAlMomento() + (this.limiteGiroDescubierto - this.giroDescubierto) >= monto ){
+				// Operaciones con precancelar automatico activado
+				if (this.saldo + this.saldoInvertido + getInteresGanadoAlMomento() < monto){
+					this.recuperarInversion();
+					this.giroDescubierto += monto - this.saldo;
+					this.saldo = 0;
+				} else {
+					if (this.saldo < monto){
+						this.recuperarInversion();
+					}
+					this.saldo -= monto;
+				}
+				res = true;
 			}
-			res = true;
+		} else {
+			// Operaciones con precancelar automatico desactivado
+			if (this.saldo + (this.limiteGiroDescubierto - this.giroDescubierto) >= monto ){
+				if (this.saldo < monto) {
+					// Giro en descubierto
+					this.giroDescubierto += monto - this.saldo;
+					this.saldo = 0;
+				}else {
+					// El saldo me alcanza para el gasto
+					this.saldo -= monto;
+				}
+				res = true;
+			}
 		}
-		
 		return res;
 	}
 	
@@ -95,10 +117,16 @@ public class Cuenta {
 	 */
 	public boolean recuperarInversion() {
 		boolean res = false;
-		// Si paso el plazo de dias de la inversion
-		if (DateUtils.esMayorIgual(LocalDate.now().minusDays((int) PLAZO_DIAS_INVERSION), fechaInversion)){
-			// recupero la inversion
-			this.saldo += saldoInvertido * (1 + INTERES_POR_INVERSION);
+		if (saldoInvertido > 0) {
+			if (DateUtils.esMayorIgual(LocalDate.now().minusDays((int) PLAZO_DIAS_INVERSION_MAXIMA), fechaInversion)) {
+				this.saldo += saldoInvertido * (1 + INTERES_POR_INVERSION_MAXIMA);
+			} else {
+				if (DateUtils.esMayorIgual(LocalDate.now().minusDays((int) PLAZO_DIAS_INVERSION_MINIMA), fechaInversion)) {
+					this.saldo += saldoInvertido * (1 + INTERES_POR_INVERSION_MINIMA);
+				} else {
+					this.saldo += saldoInvertido;
+				}
+			}
 			this.saldoInvertido = 0;
 			this.fechaInversion = null;
 			res = true;
@@ -122,9 +150,27 @@ public class Cuenta {
 		return this.saldoInvertido;
 	}
 	
-	public double getInteresAGanar() {
-		if (this.fechaInversion != null)
-			return this.saldoInvertido * Cuenta.INTERES_POR_INVERSION;
+	public double getInteresGanadoAlMomento() {
+		if (this.fechaInversion != null){
+			if (DateUtils.esMayorIgual(LocalDate.now().minusDays((int) PLAZO_DIAS_INVERSION_MAXIMA), fechaInversion)) {
+				return saldoInvertido * INTERES_POR_INVERSION_MAXIMA;
+			} else {
+				if (DateUtils.esMayorIgual(LocalDate.now().minusDays((int) PLAZO_DIAS_INVERSION_MINIMA), fechaInversion)) {
+					return saldoInvertido * INTERES_POR_INVERSION_MINIMA;
+				}
+			}
+		}
 		return 0.0d;
 	}
+
+	public double getInteresAGanar() {
+		if (this.fechaInversion != null)
+			return this.saldoInvertido * INTERES_POR_INVERSION_MAXIMA;
+		return 0.0d;
+	}
+
+	public void setPrecancelarAutomatico(boolean opcion){
+		this.precancelarAutomatico = opcion;
+	}
+
 }

@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp2.ej4.cuentas;
+package ar.edu.unlu.poo.tp2.ej5.cuentas;
 
 import java.util.ArrayList;
 import java.util.List;

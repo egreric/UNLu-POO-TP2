@@ -1,7 +1,7 @@
-package ar.edu.unlu.poo.tp2.ej4.billeteraVirtual;
+package ar.edu.unlu.poo.tp2.ej5.billeteraVirtual;
 
-import ar.edu.unlu.poo.tp2.ej4.cuentas.Cuenta;
-import ar.edu.unlu.poo.tp2.ej4.cuentas.CuentaCredito;
+import ar.edu.unlu.poo.tp2.ej5.cuentas.Cuenta;
+import ar.edu.unlu.poo.tp2.ej5.cuentas.CuentaCredito;
 
 public class Usuario {
 	private Cuenta cuenta;
@@ -78,6 +78,14 @@ public class Usuario {
 
 	public boolean pagarDeudaCredito(double monto, int indiceCompra){
 		return this.cuentaCredito.pagar(monto, indiceCompra);
+	}
+
+	public void activarPrecanceladoAutomatico(){
+		this.cuenta.setPrecancelarAutomatico(true);
+	}
+
+	public void desactivarPrecanceladoAutomatico(){
+		this.cuenta.setPrecancelarAutomatico(false);
 	}
 
 	public String getListadoCompras(){

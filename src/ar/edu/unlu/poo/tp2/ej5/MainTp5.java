@@ -1,25 +1,26 @@
-package ar.edu.unlu.poo.tp2.ej4;
+package ar.edu.unlu.poo.tp2.ej5;
 
 
-import ar.edu.unlu.poo.tp2.ej4.billeteraVirtual.Usuario;
-import ar.edu.unlu.poo.tp2.ej4.cuentas.Cuenta;
-import ar.edu.unlu.poo.tp2.ej4.cuentas.CuentaCredito;
+import ar.edu.unlu.poo.tp2.ej5.billeteraVirtual.Usuario;
+import ar.edu.unlu.poo.tp2.ej5.cuentas.Cuenta;
+import ar.edu.unlu.poo.tp2.ej5.cuentas.CuentaCredito;
+import ar.edu.unlu.poo.tp2.ej5.dateUtils.DateUtils;
 
-public class MainTp4 {
+import java.time.LocalDate;
+
+public class MainTp5 {
 
     /*
-    Podemos observar que las clases planteadas como solucion cumple con los 3 conceptos dados.
-    COHESION: Vemos que tanto la clase Usuario como la clase Cuenta y CuentaCredito tienen las responsabilidades logicas esperadas para objetos de ese tipo,
-    por lo que se mantiene una alta cohesion de las mismas.
+    El diseño actual me permite introducir de manera simple los cambios en la clase Cuenta, simplemente
+    modificamos la clase agregando ahora los plazos minimos y maximos de dias necesarios para que una inversion me devuelta cierta cantidad
+    de interes sobre el monto invertido, luego modificamos los metodos que hacen uso de estos atributos para ajustarlos a las necesidades de
+    la nueva feature.
+    Tambien se agrego la opcion para poder activar y desactivar la precancelacion automatica de una inversion en la clase Cuenta. y nuevamente
+    pasa lo mismo, no hay muchas complicaciones para manejar este cambio, mas alla de su agregacion en las distintas implementaciones de los metodos
+    respectivos.
 
-    ENCAPSULAMIENTO/CONTRATO: Tenemos acceso publico a toda aquella informacion necesaria producto de la abstraccion realizada
-
-    OCULTAMIENTO DE LA INFORMACION: Ademas del acceso publico a la informacion, esta se accede y manipula de manera que se esconde como es la implementacion dentro de
-    nuestras clases y muestra al usuario solo lo necesario para que este pueda operar (esto se logra seteando los valores de los atributos en cada clase como private y
-    accediendo y manipulando las clases mediante los metodos, apartir del envio de mensajes hacia y entre instancias de clases)
-
-    OBSERVACIONES: En la clase CuentaCredito agregamos como atributo el valor que representa el porcentaje de recargo por cada compra (Y la dejamos como atributo estatico y final, ademas
-     de publico para consultarlo, ya que su valor no puede ser modificado por el usuario)
+    La sencillez para la implementacion de los cambios viene ligada al diseño altamente cohesivo y su bajo acoplamiento, lo cual me permite
+    realizar este tipo de cambios sin la necesidad de mirar como afectan estos a las demas clases de mi proyecto.
     */
     public static void main(String[] args){
         Cuenta c = new Cuenta(10000,5000);
@@ -83,56 +84,30 @@ public class MainTp4 {
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
 
-        System.out.println("NO SE PUEDE RECUPERAR LA INVERSION (NO PASARON LOS DIAS SUFICIENTES)");
-        System.out.println("REALIZO UNA COMPRA CON CREDITO POR $10000");
-        u.comprarConCredito(10000);
+        System.out.println("RECUPERE LA INVERSION PERO SIN INTERES GANADOS YA QUE NO PASARON POR LO MENOS 30 DIAS");
+        System.out.println("HAGO UNA INVERSION POR $5000");
+        u.realizarInversion(5000);
         u.mostrarEstado();
         System.out.println("\n--------------------------------");
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
 
-        System.out.println("REALIZO UNA COMPRA CON CREDITO POR $15000");
-        u.comprarConCredito(15000);
+        System.out.println("INTENTO COMPRAR POR $10000");
+        u.realizarGastoYGirar(10000);
         u.mostrarEstado();
         System.out.println("\n--------------------------------");
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
 
-        System.out.println("NO PUEDO HACER LA COMPRA (NO TENIA CREDITO DISPONIBLE)");
-        System.out.println("REALIZO UNA COMPRA CON CREDITO POR $3000");
-        u.comprarConCredito(3000);
+        System.out.println("COMO NO TENGO PRECANCELACION AUTOMATICA NO PUEDO SACAR DE MIS INVERSIONES EL DINERO QUE ME FALTA PARA COMPLETAR LOS $10000");
+        System.out.println("ACTIVAMOS EL PRECANCELAR AUTOMATICO Y PROBAMOS DE NUEVO");
+        System.out.println("INTENTO COMPRAR POR $10000");
+        u.activarPrecanceladoAutomatico();
+        u.realizarGastoYGirar(10000);
         u.mostrarEstado();
         System.out.println("\n--------------------------------");
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
-
-        System.out.println("REALIZO PAGO DE MI SEGUNDA COMPRA ($2000)");
-        u.pagarDeudaCredito(2000,2);
-        u.mostrarEstado();
-        System.out.println("\n--------------------------------");
-        System.out.println("--------------------------------");
-        System.out.println("--------------------------------");
-
-        System.out.println("REALIZO PAGO DE MI SEGUNDA COMPRA (LO QUE RESTA, $1150)");
-        u.pagarDeudaCredito(1150,2);
-        u.mostrarEstado();
-        System.out.println("\n--------------------------------");
-        System.out.println("--------------------------------");
-        System.out.println("--------------------------------");
-
-        System.out.println("REALIZO PAGO DE MI PRIMERA COMPRA SIN LOS INTERESES ($10000)");
-        u.pagarDeudaCredito(10000,1);
-        u.mostrarEstado();
-        System.out.println("\n--------------------------------");
-        System.out.println("--------------------------------");
-        System.out.println("--------------------------------");
-
-        System.out.println("REALIZO PAGO DE INTERESES DE MI PRIMERA COMPRA ($500)");
-        u.pagarDeudaCredito(500,1);
-        u.mostrarEstado();
-        System.out.println("\n--------------------------------");
-        System.out.println("--------------------------------");
-        System.out.println("--------------------------------");
-
+        System.out.println("VEMOS QUE AHORA SI ME DEJO");
     }
 }
