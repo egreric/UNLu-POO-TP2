@@ -1,12 +1,11 @@
-package ar.edu.unlu.poo.tp2.ej6;
+package ar.edu.unlu.poo.tp2.ej7;
 
-import ar.edu.unlu.poo.tp2.ej6.sistemaVentas.Expendedor;
-import ar.edu.unlu.poo.tp2.ej6.sistemaVentas.ModuloInformes;
+import ar.edu.unlu.poo.tp2.ej7.sistemaVentas.ModuloInformes;
 
 import java.sql.Array;
 import java.util.ArrayList;
 
-public class MainTp6 {
+public class MainTp7 {
     public static void main(String args[]){
         /*
         El diseño propuesto como solucion no pareceria cumplir con todos con los requisitos del sistema

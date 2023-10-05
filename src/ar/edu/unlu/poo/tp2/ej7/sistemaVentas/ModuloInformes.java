@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp2.ej6.sistemaVentas;
+package ar.edu.unlu.poo.tp2.ej7.sistemaVentas;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;

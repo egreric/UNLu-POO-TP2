@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp2.ej6.sistemaVentas;
+package ar.edu.unlu.poo.tp2.ej7.sistemaVentas;
 
 public class DetalleExpendedorVenta {
     // esta clase se implementa como auxiliar para tratar el punto 2 de forma mas eficaz
