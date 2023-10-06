@@ -35,6 +35,10 @@ public class Cliente {
     public boolean mismaPatente(String patente){
         return this.patente.equals(patente);
     }
+
+    public void agregarVenta(Venta venta){
+        this.ventas.add(venta);
+    }
 }
 
 

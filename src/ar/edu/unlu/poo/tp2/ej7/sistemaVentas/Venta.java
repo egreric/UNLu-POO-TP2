@@ -8,7 +8,7 @@ public class Venta {
     private Expendedor expendedor;
     private LocalDate fecha;
     private double importe;
-    private double litrosCombustible; // sabiendo que en la venta se carga el importe, para saber cuantos l
+    private double litrosCombustible;
 
     public Venta(Cliente cliente, Empleado empleado, Expendedor expendedor, LocalDate fecha, double importe){
         this.cliente = cliente;
@@ -17,6 +17,9 @@ public class Venta {
         this.fecha = fecha;
         this.importe = importe ;
         this.litrosCombustible = importe / this.expendedor.getPrecioVentaCombustible();
+        cliente.agregarVenta(this);
+        empleado.agregarVenta(this);
+        expendedor.agregarVenta(this);
     }
 
     public Cliente getCliente() {

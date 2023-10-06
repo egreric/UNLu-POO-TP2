@@ -35,4 +35,8 @@ public class Empleado {
     public boolean mismoDni(String dni){
         return this.dni.equals(dni);
     }
+
+    public void agregarVenta(Venta venta){
+        this.ventas.add(venta);
+    }
 }

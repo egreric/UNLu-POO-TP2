@@ -28,7 +28,7 @@ public class Expendedor {
         return combustible.getPrecioVenta();
     }
 
-    public double getTotalMensualVendido (){
+    public double getTotalMensualVendido(){
         double monto = 0;
         for (Venta v: ventas){
             if (v.getExpendedor().mismoExpendedor(this.codigo) && (v.getFecha().getMonthValue() == (LocalDate.now().getMonthValue() - 1))){
@@ -38,7 +38,31 @@ public class Expendedor {
         return monto;
     }
 
+    public double getTotalMensualLitrosExpendidos(){
+        double monto = 0;
+        for (Venta v: ventas){
+            if (v.getExpendedor().mismoExpendedor(this.codigo) && (v.getFecha().getMonthValue() == (LocalDate.now().getMonthValue() - 1))){
+                monto += v.getLitrosCombustible();
+            }
+        }
+        return monto;
+    }
+
+    public int getCantidadMensualVentas(){
+        int cantidad = 0;
+        for (Venta v: ventas){
+            if (v.getExpendedor().getCombustible().equals(this.getCombustible()) && (v.getFecha().getMonthValue() == (LocalDate.now().getMonthValue() - 1))){
+                cantidad++;
+            }
+        }
+        return cantidad;
+    }
+
     public boolean mismoExpendedor(int codigoExpendedor){
         return this.codigo == codigoExpendedor;
+    }
+
+    public void agregarVenta(Venta venta){
+        this.ventas.add(venta);
     }
 }
