@@ -30,7 +30,7 @@ public class Libro extends PublicacionPrestable {
     public String getDescripcion(){
         return "El libro: " + this.getNombre() +
                 ", creado por el autor: " + getAutores() +
-                ", tiene: " + getCantidadPaginas() + " paginas" +
+                "tiene: " + getCantidadPaginas() + " paginas" +
                 ", quedan: " + getCantidadEjemplaresDisponibles() + " ejemplares disponibles" +
                 " y se prestaron: " + getCantidadEjemplaresPrestados() + " ejemplares.";
     }
