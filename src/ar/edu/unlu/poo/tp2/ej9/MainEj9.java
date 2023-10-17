@@ -27,5 +27,6 @@ public class MainEj9 {
         for (Figura f: listadoFiguras){
             System.out.println(f.toString());
         }
+
     }
 }

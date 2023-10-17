@@ -1,5 +1,7 @@
 package ar.edu.unlu.poo.tp2.ej10;
 
+import ar.edu.unlu.poo.tp2.ej10.organizacion.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
