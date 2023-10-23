@@ -27,8 +27,7 @@ public class Auto extends Vehiculo {
     }
 
     @Override
-    public double getPrecioBase() {
-        return super.getPrecioBase() + (precioPorAsiento * getCantidadAsientos());
+    public double getPrecioBase() { return super.getPrecioBase() + (precioPorAsiento * getCantidadAsientos());
     }
 
 }

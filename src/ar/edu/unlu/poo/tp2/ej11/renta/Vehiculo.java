@@ -29,4 +29,13 @@ public class Vehiculo {
         return getPrecioBase() * cantidadDias;
     }
 
+    public boolean comparaPatente(String patente){
+        return getPatente().equals(patente);
+    }
+
+    @Override
+    public String toString(){
+        return "Tipo de vehiculo: " + this.getClass().getSimpleName() + " - Patente: " + getPatente();
+    }
+
 }
